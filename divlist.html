@@ -24,29 +24,58 @@
     </style></head>
 </head>
 <body style="padding: 14px;">
-    <h2>Vasnth Sai builds lists with divs</h1><div class="flex-container" id="target">
+    <h2>Vasnth Sai builds lists with divs</h1>
+    <input id="inputText" type="text" placeholder="Enter your item" />
+    <br><br>
+    <div class="flex-container" id="target">
         <div class="divlist">row item 1</div>   
         <div class="divlist">row item 2</div>  
         <div class="divlist">row item 3</div>  
-      </div>
+    </div>
   
-  <p> Press the button to create an new element of type div and then add it to the container.
-      </p>
-      <button onclick="makeNewDiv()">Add end</button>
-  
-  
-</body>
-<script>
-  function makeNewDiv(){
-      /* make the div and its text */
-      let element = document.createElement("div")
-      element.innerHTML = "an item after 3"
-      element.style.color = "orange"
+    <p> Press the button to create an new element of type div and then add it to the container.</p>
+    <button onclick="makeNewDiv()" style="background-color:rgb(123, 245, 245); color:rgb(61, 98, 100)">Add end</button>
+    <button onclick="addFront()" style="background-color:rgb(123, 245, 245); color:rgb(61, 98, 100)">Add front</button>
+    <button onclick="remove()" style="background-color:rgb(123, 245, 245); color:rgb(61, 98, 100)">Remove</button>
 
-      /* add it to the container */
-      let container = document.getElementById('target')
-      container.appendChild(element)
-      
-  }
-</script>
-</html>	
+    <script>
+        function makeNewDiv()
+         {
+            /* make the div and its text */
+            let element = document.createElement("div")
+            const inputText = document.getElementById("inputText").value;
+            element.innerHTML = inputText;
+            element.classList.add("divlist");
+            element.style.color = "Green"
+
+
+            /* add it to the container */
+            let container = document.getElementById('target')
+            container.appendChild(element);
+        }
+
+        function addFront() 
+        {
+            let element = document.createElement("div");
+            const inputText = document.getElementById("inputText").value;
+
+            element.innerHTML = inputText;
+            element.classList.add("divlist");
+            element.style.color = "blue";
+
+            let container = document.getElementById("target");
+            container.insertBefore(element, container.firstChild);
+        }
+
+        function remove() 
+        {
+            const divListItems = document.getElementsByClassName("divlist");
+
+            if (divListItems.length > 0) {
+                divListItems[Math.floor(divListItems.length / 2)].remove();
+            }
+        }
+    </script>
+</body>
+
+</html>
